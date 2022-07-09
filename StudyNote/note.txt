@@ -1,0 +1,44 @@
+int ,int32,int64,string,list,struct 这几种类型是值传递
+map，chan 是引用传值
+splice 在通过下标赋值的时候是引用传值，通过append 追加值的时候是值传递
+
+/*
+func validNums(x, y int, brd [][]byte) map[byte]bool {
+	//初始化单元格可用数字的map
+	res := make(map[byte]bool)
+	for i := uint8(0); i < uint8(len(brd[x])); i++ {
+		res[49+i] = true
+	}
+	//删除单元格所在行不可用数字
+	for curCol := 0; curCol < len(brd[x]); curCol++ {
+		if curCol != y && brd[x][curCol] != '.' {
+			delete(res, brd[x][curCol])
+		}
+	}
+	//删除单元格所在列不可用数字
+	for curRow := 0; curRow < len(brd); curRow++ {
+		if curRow != x && brd[curRow][y] != '.' {
+			delete(res, brd[curRow][y])
+		}
+	}
+	//删除单元格所在矩阵不可用数字
+	row := x / 3
+	col := y / 3
+	for i := 0; i < 3; i++ {
+		curRow := row*3 + i
+		if curRow == x {
+			continue
+		}
+		for j := 0; j < 3; j++ {
+			curCol := col*3 + j
+			if curCol == y {
+				continue
+			}
+			if brd[curRow][curCol] != '.' {
+				delete(res, brd[curRow][curCol])
+			}
+		}
+	}
+	return res
+}
+*/
