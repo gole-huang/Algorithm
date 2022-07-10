@@ -7,6 +7,7 @@
     <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algo/36.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/36.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +111,8 @@
       <workItem from="1657329260381" duration="7844000" />
       <workItem from="1657348435451" duration="5601000" />
       <workItem from="1657378047857" duration="9899000" />
-      <workItem from="1657420351077" duration="1891000" />
+      <workItem from="1657420351077" duration="5625000" />
+      <workItem from="1657430678852" duration="4115000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
@@ -126,12 +128,20 @@
       <option name="project" value="LOCAL" />
       <updated>1657421121242</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="wrong result">
+      <created>1657422279158</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657422279158</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="not finished yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="not finished yet" />
+    <MESSAGE value="wrong result" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrong result" />
   </component>
   <component name="VgoProject">
     <environment>

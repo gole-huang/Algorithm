@@ -1,5 +1,7 @@
 package Algo
 
+import "fmt"
+
 const DMS int = 9
 
 type Sudoku struct {
@@ -20,7 +22,7 @@ func (sdk *Sudoku) rowValid() {
 	for row := 0; row < DMS; row++ {
 		sdk.rows[row] = make(map[byte]bool)
 		for val := 0; val < DMS; val++ {
-			sdk.rows[row][byte(val+1)] = true
+			sdk.rows[row][byte(49+val)] = true
 		}
 	}
 	for row := 0; row < DMS; row++ {
@@ -37,7 +39,7 @@ func (sdk *Sudoku) colValid() {
 	for col := 0; col < DMS; col++ {
 		sdk.cols[col] = make(map[byte]bool)
 		for val := 0; val < DMS; val++ {
-			sdk.cols[col][byte(val+1)] = true
+			sdk.cols[col][byte(49+val)] = true
 		}
 	}
 	for col := 0; col < DMS; col++ {
@@ -54,12 +56,13 @@ func (sdk *Sudoku) sqrValid() {
 	for mtx := 0; mtx < DMS; mtx++ {
 		sdk.mtxs[mtx] = make(map[byte]bool)
 		for val := 0; val < DMS; val++ {
-			sdk.mtxs[mtx][byte(val+1)] = true
+			sdk.mtxs[mtx][byte(49+val)] = true
 		}
 	}
 	for row := 0; row < DMS; row++ {
 		for col := 0; col < DMS; col++ {
-			mtx := row/3 + (col/3)*3
+			mtx := (row/3)*3 + (col / 3)
+			//fmt.Printf("MTX=%d\n", mtx)
 			if sdk.brd[row][col] != '.' {
 				delete(sdk.mtxs[mtx], sdk.brd[row][col])
 			}
@@ -83,19 +86,28 @@ func (sdk *Sudoku) findNext(x, y int) (int, int) {
 	return -1, -1
 }
 
+//TODO:使得函数能实现递归
 func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, mtxUsed []map[byte]bool) bool {
 	if x == -1 && y == -1 {
 		return true
 	}
-	sqr := x/3 + (y/3)*3
-	for i := uint8(49); i < uint8(59); i++ {
+	sqr := (x/3)*3 + (y / 3)
+	for i := uint8(49); i < uint8(58); i++ {
 		if sdk.rows[x][i] && !rowUsed[x][i] && sdk.cols[y][i] && !colUsed[y][i] && sdk.mtxs[sqr][i] && !mtxUsed[sqr][i] {
-			sdk.brd[x][y] = i
 			rowUsed[x][i] = true
 			colUsed[y][i] = true
 			mtxUsed[sqr][i] = true
+			fmt.Printf("%d,%d, try i = %q\n", x, y, i)
 			xNext, yNext := sdk.findNext(x, y+1)
-			return sdk.fill(xNext, yNext, rowUsed, colUsed, mtxUsed)
+			if !sdk.fill(xNext, yNext, rowUsed, colUsed, mtxUsed) {
+				rowUsed[x][i] = false
+				colUsed[y][i] = false
+				mtxUsed[sqr][i] = false
+				continue
+			} else {
+				sdk.brd[x][y] = i
+				return true
+			}
 		}
 	}
 	return false
@@ -117,5 +129,6 @@ func IsValidSudoku(board [][]byte) bool {
 		colUsed[i] = make(map[byte]bool)
 		mtxUsed[i] = make(map[byte]bool)
 	}
-	return sudoku.fill(0, 0, rowUsed, colUsed, mtxUsed)
+	x, y := sudoku.findNext(0, 0)
+	return sudoku.fill(x, y, rowUsed, colUsed, mtxUsed)
 }

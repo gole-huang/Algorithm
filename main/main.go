@@ -54,6 +54,7 @@ func main() {
 		{'.', '.', '.', '4', '1', '9', '.', '.', '5'},
 		{'.', '.', '.', '.', '8', '.', '.', '7', '9'},
 	}
+	//fmt.Printf("%v\n", board)
 	fmt.Printf("%v", Algo.IsValidSudoku(board))
 }
 
