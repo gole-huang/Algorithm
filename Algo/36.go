@@ -4,8 +4,14 @@ type Sudoku struct {
 	brd  [][]byte
 	rows []map[byte]bool
 	cols []map[byte]bool
-	sqrs []map[byte]bool
+	mtxs []map[byte]bool
 }
+
+/*TODO
+为数独的每一行、每一列、每一个矩阵计算出可用数字，分别放入rows/cols/mtxs中；
+当前空格尝试填入一个数字，该数字必须为该行、列、矩阵中的可用数字，且非该行、列、矩阵的已占用数字。填入后该数字添加到该行、列、矩阵的已占用数字中；
+不断尝试填入并寻找下一个空位，一直到填完整个数独为止（下一个空位坐标为（-1，-1）），返回真，若没有办法完成，返回假
+*/
 
 func (sdk *Sudoku) rowValid() {
 	sdk.rows = make([]map[byte]bool, len(sdk.brd))
@@ -40,17 +46,17 @@ func (sdk *Sudoku) colValid() {
 }
 
 func (sdk *Sudoku) sqrValid() {
-	sdk.sqrs = make([]map[byte]bool, len(sdk.brd[0]))
+	sdk.mtxs = make([]map[byte]bool, len(sdk.brd[0]))
 	for sqr := 0; sqr < len(sdk.brd); sqr++ {
 		for val := 0; val < len(sdk.brd[sqr]); val++ {
-			sdk.sqrs[sqr][byte(val+1)] = true
+			sdk.mtxs[sqr][byte(val+1)] = true
 		}
 	}
 	for row := 0; row < len(sdk.brd); row++ {
 		for col := 0; col < len(sdk.brd[0]); col++ {
 			sqr := row/3 + (col/3)*3
 			if sdk.brd[row][col] != '.' {
-				delete(sdk.sqrs[sqr], sdk.brd[row][col])
+				delete(sdk.mtxs[sqr], sdk.brd[row][col])
 			}
 		}
 	}
@@ -78,7 +84,7 @@ func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, sqrUsed []map[byte]bool) boo
 	}
 	sqr := x/3 + (y/3)*3
 	for i := uint8(49); i < uint8(59); i++ {
-		if sdk.rows[x][i] && !rowUsed[x][i] && sdk.cols[y][i] && !colUsed[y][i] && sdk.sqrs[sqr][i] && !sqrUsed[sqr][i] {
+		if sdk.rows[x][i] && !rowUsed[x][i] && sdk.cols[y][i] && !colUsed[y][i] && sdk.mtxs[sqr][i] && !sqrUsed[sqr][i] {
 			sdk.brd[x][y] = i
 			rowUsed[x][i] = true
 			colUsed[y][i] = true
@@ -93,9 +99,11 @@ func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, sqrUsed []map[byte]bool) boo
 func IsValidSudoku(board [][]byte) bool {
 	sudoku := new(Sudoku)
 	sudoku.brd = board
+	//初始化可用数字
 	sudoku.rowValid()
 	sudoku.colValid()
 	sudoku.sqrValid()
+	//初始化被占用数字
 	rowUsed := make([]map[byte]bool, len(sudoku.brd))
 	colUsed := make([]map[byte]bool, len(sudoku.brd[0]))
 	sqrUsed := make([]map[byte]bool, len(sudoku.brd)/3+(len(sudoku.brd[0])/3)*3)

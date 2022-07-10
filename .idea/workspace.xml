@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/StudyNote/note.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/1200.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/1200.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/22.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/22.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/24.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/24.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/31.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/31.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/32.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/32.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/33.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/33.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/34.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/34.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algo/36.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/36.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/38.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/38.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/41.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/41.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/ByteInt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/ByteInt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/bSearch.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/bSearch.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,9 +109,22 @@
       <workItem from="1657289915556" duration="76000" />
       <workItem from="1657329260381" duration="7844000" />
       <workItem from="1657348435451" duration="5601000" />
-      <workItem from="1657378047857" duration="9684000" />
+      <workItem from="1657378047857" duration="9899000" />
+      <workItem from="1657420351077" duration="727000" />
     </task>
+    <task id="LOCAL-00001" summary="not finished yet">
+      <created>1657389436535</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657389436535</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="not finished yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="not finished yet" />
   </component>
   <component name="VgoProject">
     <environment>
