@@ -1,5 +1,7 @@
 package Algo
 
+const DMS int = 9
+
 type Sudoku struct {
 	brd  [][]byte
 	rows []map[byte]bool
@@ -14,14 +16,15 @@ type Sudoku struct {
 */
 
 func (sdk *Sudoku) rowValid() {
-	sdk.rows = make([]map[byte]bool, len(sdk.brd))
-	for row := 0; row < len(sdk.brd); row++ {
-		for val := 0; val < len(sdk.brd[row]); val++ {
+	sdk.rows = make([]map[byte]bool, DMS)
+	for row := 0; row < DMS; row++ {
+		sdk.rows[row] = make(map[byte]bool)
+		for val := 0; val < DMS; val++ {
 			sdk.rows[row][byte(val+1)] = true
 		}
 	}
-	for row := 0; row < len(sdk.brd); row++ {
-		for col := 0; col < len(sdk.brd[row]); col++ {
+	for row := 0; row < DMS; row++ {
+		for col := 0; col < DMS; col++ {
 			if sdk.brd[row][col] != '.' {
 				delete(sdk.rows[row], sdk.brd[row][col])
 			}
@@ -30,14 +33,15 @@ func (sdk *Sudoku) rowValid() {
 }
 
 func (sdk *Sudoku) colValid() {
-	sdk.cols = make([]map[byte]bool, len(sdk.brd[0]))
-	for col := 0; col < len(sdk.brd); col++ {
-		for val := 0; val < len(sdk.brd[col]); val++ {
+	sdk.cols = make([]map[byte]bool, DMS)
+	for col := 0; col < DMS; col++ {
+		sdk.cols[col] = make(map[byte]bool)
+		for val := 0; val < DMS; val++ {
 			sdk.cols[col][byte(val+1)] = true
 		}
 	}
-	for col := 0; col < len(sdk.brd[0]); col++ {
-		for row := 0; row < len(sdk.brd); row++ {
+	for col := 0; col < DMS; col++ {
+		for row := 0; row < DMS; row++ {
 			if sdk.brd[row][col] != '.' {
 				delete(sdk.cols[col], sdk.brd[row][col])
 			}
@@ -46,30 +50,31 @@ func (sdk *Sudoku) colValid() {
 }
 
 func (sdk *Sudoku) sqrValid() {
-	sdk.mtxs = make([]map[byte]bool, len(sdk.brd[0]))
-	for sqr := 0; sqr < len(sdk.brd); sqr++ {
-		for val := 0; val < len(sdk.brd[sqr]); val++ {
-			sdk.mtxs[sqr][byte(val+1)] = true
+	sdk.mtxs = make([]map[byte]bool, DMS)
+	for mtx := 0; mtx < DMS; mtx++ {
+		sdk.mtxs[mtx] = make(map[byte]bool)
+		for val := 0; val < DMS; val++ {
+			sdk.mtxs[mtx][byte(val+1)] = true
 		}
 	}
-	for row := 0; row < len(sdk.brd); row++ {
-		for col := 0; col < len(sdk.brd[0]); col++ {
-			sqr := row/3 + (col/3)*3
+	for row := 0; row < DMS; row++ {
+		for col := 0; col < DMS; col++ {
+			mtx := row/3 + (col/3)*3
 			if sdk.brd[row][col] != '.' {
-				delete(sdk.mtxs[sqr], sdk.brd[row][col])
+				delete(sdk.mtxs[mtx], sdk.brd[row][col])
 			}
 		}
 	}
 }
 
 func (sdk *Sudoku) findNext(x, y int) (int, int) {
-	for j := y; j < len(sdk.brd[x]); j++ {
+	for j := y; j < DMS; j++ {
 		if sdk.brd[x][j] == '.' {
 			return x, j
 		}
 	}
-	for i := x + 1; i < len(sdk.brd); i++ {
-		for j := 0; j < len(sdk.brd[i]); j++ {
+	for i := x + 1; i < DMS; i++ {
+		for j := 0; j < DMS; j++ {
 			if sdk.brd[i][j] == '.' {
 				return i, j
 			}
@@ -78,19 +83,19 @@ func (sdk *Sudoku) findNext(x, y int) (int, int) {
 	return -1, -1
 }
 
-func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, sqrUsed []map[byte]bool) bool {
+func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, mtxUsed []map[byte]bool) bool {
 	if x == -1 && y == -1 {
 		return true
 	}
 	sqr := x/3 + (y/3)*3
 	for i := uint8(49); i < uint8(59); i++ {
-		if sdk.rows[x][i] && !rowUsed[x][i] && sdk.cols[y][i] && !colUsed[y][i] && sdk.mtxs[sqr][i] && !sqrUsed[sqr][i] {
+		if sdk.rows[x][i] && !rowUsed[x][i] && sdk.cols[y][i] && !colUsed[y][i] && sdk.mtxs[sqr][i] && !mtxUsed[sqr][i] {
 			sdk.brd[x][y] = i
 			rowUsed[x][i] = true
 			colUsed[y][i] = true
-			sqrUsed[sqr][i] = true
+			mtxUsed[sqr][i] = true
 			xNext, yNext := sdk.findNext(x, y+1)
-			return sdk.fill(xNext, yNext, rowUsed, colUsed, sqrUsed)
+			return sdk.fill(xNext, yNext, rowUsed, colUsed, mtxUsed)
 		}
 	}
 	return false
@@ -104,8 +109,13 @@ func IsValidSudoku(board [][]byte) bool {
 	sudoku.colValid()
 	sudoku.sqrValid()
 	//初始化被占用数字
-	rowUsed := make([]map[byte]bool, len(sudoku.brd))
-	colUsed := make([]map[byte]bool, len(sudoku.brd[0]))
-	sqrUsed := make([]map[byte]bool, len(sudoku.brd)/3+(len(sudoku.brd[0])/3)*3)
-	return sudoku.fill(0, 0, rowUsed, colUsed, sqrUsed)
+	rowUsed := make([]map[byte]bool, DMS)
+	colUsed := make([]map[byte]bool, DMS)
+	mtxUsed := make([]map[byte]bool, DMS)
+	for i := 0; i < DMS; i++ {
+		rowUsed[i] = make(map[byte]bool)
+		colUsed[i] = make(map[byte]bool)
+		mtxUsed[i] = make(map[byte]bool)
+	}
+	return sudoku.fill(0, 0, rowUsed, colUsed, mtxUsed)
 }
