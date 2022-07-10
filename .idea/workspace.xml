@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/36.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/36.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/36.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/37.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +112,7 @@
       <workItem from="1657348435451" duration="5601000" />
       <workItem from="1657378047857" duration="9899000" />
       <workItem from="1657420351077" duration="5625000" />
-      <workItem from="1657430678852" duration="4115000" />
+      <workItem from="1657430678852" duration="5749000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
@@ -135,13 +135,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657422279158</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="seems right">
+      <created>1657435696213</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657435696213</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="not finished yet" />
     <MESSAGE value="wrong result" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrong result" />
+    <MESSAGE value="seems right" />
+    <option name="LAST_COMMIT_MESSAGE" value="seems right" />
   </component>
   <component name="VgoProject">
     <environment>

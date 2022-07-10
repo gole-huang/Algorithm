@@ -62,7 +62,6 @@ func (sdk *Sudoku) sqrValid() {
 	for row := 0; row < DMS; row++ {
 		for col := 0; col < DMS; col++ {
 			mtx := (row/3)*3 + (col / 3)
-			//fmt.Printf("MTX=%d\n", mtx)
 			if sdk.brd[row][col] != '.' {
 				delete(sdk.mtxs[mtx], sdk.brd[row][col])
 			}
@@ -86,7 +85,6 @@ func (sdk *Sudoku) findNext(x, y int) (int, int) {
 	return -1, -1
 }
 
-//TODO:使得函数能实现递归
 func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, mtxUsed []map[byte]bool) bool {
 	if x == -1 && y == -1 {
 		return true
@@ -113,7 +111,7 @@ func (sdk *Sudoku) fill(x, y int, rowUsed, colUsed, mtxUsed []map[byte]bool) boo
 	return false
 }
 
-func IsValidSudoku(board [][]byte) bool {
+func SolveSudoku(board [][]byte) {
 	sudoku := new(Sudoku)
 	sudoku.brd = board
 	//初始化可用数字
@@ -130,5 +128,8 @@ func IsValidSudoku(board [][]byte) bool {
 		mtxUsed[i] = make(map[byte]bool)
 	}
 	x, y := sudoku.findNext(0, 0)
-	return sudoku.fill(x, y, rowUsed, colUsed, mtxUsed)
+	if sudoku.fill(x, y, rowUsed, colUsed, mtxUsed) {
+		board = sudoku.brd
+	}
+	fmt.Printf("%v\n", board)
 }
