@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/Algo/741.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/36.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/37.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +112,8 @@
       <workItem from="1657348435451" duration="5601000" />
       <workItem from="1657378047857" duration="9899000" />
       <workItem from="1657420351077" duration="5625000" />
-      <workItem from="1657430678852" duration="5749000" />
+      <workItem from="1657430678852" duration="5918000" />
+      <workItem from="1657463854036" duration="3703000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
@@ -142,14 +143,22 @@
       <option name="project" value="LOCAL" />
       <updated>1657435696213</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="OK">
+      <created>1657437488287</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1657437488287</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="not finished yet" />
     <MESSAGE value="wrong result" />
     <MESSAGE value="seems right" />
-    <option name="LAST_COMMIT_MESSAGE" value="seems right" />
+    <MESSAGE value="OK" />
+    <option name="LAST_COMMIT_MESSAGE" value="OK" />
   </component>
   <component name="VgoProject">
     <environment>
