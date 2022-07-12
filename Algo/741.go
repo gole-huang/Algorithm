@@ -2,10 +2,12 @@ package Algo
 
 import "fmt"
 
+/*
 type farm struct {
 	grid   [][]int
 	length int
 }
+*/
 
 /*
 TODO:findPath(x,y) [][][2]int
@@ -32,37 +34,29 @@ TODO:findPath(x,y) [][][2]int
 	}
 	paths = append(pathX, pathY...)
 */
-func (cherry *farm) findPath(x, y int) [][][2]int {
-	if cherry.grid[x][y] == -1 {
+func findPath(x, y int, cherry [][]int) [][][2]int {
+	length := len(cherry)
+	if cherry[x][y] == -1 {
 		return nil
 	}
-	if x == cherry.length-1 && y == cherry.length-1 {
+	if x == length-1 && y == length-1 {
 		return [][][2]int{{{x, y}}}
-	} else if x == cherry.length-1 {
-		pathY := cherry.findPath(x, y+1)
-		for i := range pathY {
-			pathY[i] = append(pathY[i], [2]int{x, y})
-		}
-		return pathY
-	} else if y == cherry.length-1 {
-		pathX := cherry.findPath(x+1, y)
-		if pathX != nil {
-			for i := range pathX {
-				pathX[i] = append(pathX[i], [2]int{x, y})
-			}
-		}
-		return pathX
 	} else {
-		pathX := cherry.findPath(x+1, y)
-		if pathX != nil {
-			for i := range pathX {
-				pathX[i] = append(pathX[i], [2]int{x, y})
+		var pathX, pathY [][][2]int
+		if x != length-1 {
+			pathX := findPath(x+1, y, cherry)
+			if pathX != nil {
+				for i := range pathX {
+					pathX[i] = append(pathX[i], [2]int{x, y})
+				}
 			}
 		}
-		pathY := cherry.findPath(x, y+1)
-		if pathY != nil {
-			for i := range pathY {
-				pathY[i] = append(pathY[i], [2]int{x, y})
+		if y != length-1 {
+			pathY := findPath(x, y+1, cherry)
+			if pathY != nil {
+				for i := range pathY {
+					pathY[i] = append(pathY[i], [2]int{x, y})
+				}
 			}
 		}
 		paths := append(pathX, pathY...)
@@ -70,28 +64,29 @@ func (cherry *farm) findPath(x, y int) [][][2]int {
 	}
 }
 
-func (cherry *farm) pickMost(x, y int) int {
-	if cherry.grid[x][y] == -1 {
+func pickMost(x, y int, cherry [][]int) int {
+	length := len(cherry)
+	if cherry[x][y] == -1 {
 		return -1
 	} else {
-		res := cherry.grid[x][y]
-		if x == cherry.length-1 && y == cherry.length-1 {
+		res := cherry[x][y]
+		if x == length-1 && y == length-1 {
 			return res
-		} else if x == cherry.length-1 {
-			tmpRes := cherry.pickMost(x, y+1)
+		} else if x == length-1 {
+			tmpRes := pickMost(x, y+1, cherry)
 			if tmpRes != -1 {
 				tmpRes += res
 			}
 			return tmpRes
-		} else if y == cherry.length-1 {
-			tmpRes := cherry.pickMost(x+1, y)
+		} else if y == length-1 {
+			tmpRes := pickMost(x+1, y, cherry)
 			if tmpRes != -1 {
 				tmpRes += res
 			}
 			return tmpRes
 		} else {
-			xMove := cherry.pickMost(x+1, y)
-			yMove := cherry.pickMost(x, y+1)
+			xMove := pickMost(x+1, y, cherry)
+			yMove := pickMost(x, y+1, cherry)
 			if xMove == -1 && yMove == -1 {
 				fmt.Printf("grid[%d][%d] back to %d\n", x, y, res)
 				return -1
@@ -104,30 +99,25 @@ func (cherry *farm) pickMost(x, y int) int {
 	}
 }
 
-func CherryPickup(grid [][]int) int {
-	Cherry := new(farm)
-	Cherry.grid = grid
-	Cherry.length = len(grid)
-	var maxPath [][2]int
-	first := 0
-	for _, path := range Cherry.findPath(0, 0) {
-		cnt := 0
+func CherryPickup(Cherry [][]int) int {
+	//length := len(Cherry)
+	fmt.Printf("Begin grid: %v\n", Cherry)
+	//计算每一条路径中，第一次和第二次采集樱桃的总数
+	total := 0
+	for _, path := range findPath(0, 0, Cherry) {
+		first := 0
+		cherry := Cherry
+		fmt.Printf("Before grid: %v\n", cherry)
 		for i := 0; i < len(path); i++ {
-			cnt += Cherry.grid[path[i][0]][path[i][1]]
+			first += cherry[path[i][0]][path[i][1]]
+			cherry[path[i][0]][path[i][1]] = 0
 		}
-		if first < cnt {
-			first = cnt
-			maxPath = path
+		fmt.Printf("After grid: %v\n", cherry)
+		second := pickMost(0, 0, cherry)
+		fmt.Printf("first: %v\nSecond: %v\n", first, second)
+		if total < first+second {
+			total = first + second
 		}
 	}
-	for _, node := range maxPath {
-		Cherry.grid[node[0]][node[1]] = 0
-	}
-	fmt.Printf("After first time:\n%v\nResult: %v\n", Cherry.grid, first)
-	if first == 0 {
-		return 0
-	}
-	second := Cherry.pickMost(0, 0)
-	fmt.Printf("After Second time:\n%v\nResult: %v\n", Cherry.grid, second)
-	return first + second
+	return total
 }
