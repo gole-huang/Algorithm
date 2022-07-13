@@ -1,19 +1,22 @@
 package Algo
 
-func findPath(x, y int, cherry [][]int) [][][2]int {
+func findPath(x, y int, cherry [][]int) []map[[2]int]int {
 	length := len(cherry)
 	if cherry[x][y] == -1 {
 		return nil
 	}
 	if x == length-1 && y == length-1 {
-		return [][][2]int{{{x, y}}}
+		pathMap := make([]map[[2]int]int, 1)
+		pathMap[0] = make(map[[2]int]int, 1)
+		pathMap[0][[2]int{x, y}] = cherry[x][y]
+		return pathMap
 	} else {
-		var pathX, pathY [][][2]int
+		var pathX, pathY []map[[2]int]int
 		if x != length-1 {
 			pathX = findPath(x+1, y, cherry)
 			if pathX != nil {
 				for i := range pathX {
-					pathX[i] = append(pathX[i], [2]int{x, y})
+					pathX[i][[2]int{x, y}] = cherry[x][y]
 				}
 			}
 		}
@@ -21,7 +24,7 @@ func findPath(x, y int, cherry [][]int) [][][2]int {
 			pathY = findPath(x, y+1, cherry)
 			if pathY != nil {
 				for i := range pathY {
-					pathY[i] = append(pathY[i], [2]int{x, y})
+					pathY[i][[2]int{x, y}] = cherry[x][y]
 				}
 			}
 		}
@@ -30,21 +33,21 @@ func findPath(x, y int, cherry [][]int) [][][2]int {
 	}
 }
 
-func pickMost(x, y int, cherry [][]int) int {
+func pickMost(x, y int, cherry [][]int, pickMap map[[2]int]int) int {
 	length := len(cherry)
 	if cherry[x][y] == -1 {
 		return -1
 	} else {
-		res := cherry[x][y]
+		res := cherry[x][y] - pickMap[[2]int{x, y}]
 		if x == length-1 && y == length-1 {
 			return res
 		} else {
 			var xMove, yMove int
 			if x != length-1 {
-				xMove = pickMost(x+1, y, cherry)
+				xMove = pickMost(x+1, y, cherry, pickMap)
 			}
 			if y != length-1 {
-				yMove = pickMost(x, y+1, cherry)
+				yMove = pickMost(x, y+1, cherry, pickMap)
 			}
 			if xMove == -1 && yMove == -1 {
 				return -1
@@ -67,11 +70,17 @@ func CherryPickup(cherry [][]int) int {
 			grid[i] = make([]int, len(cherry[i]))
 			copy(grid[i], cherry[i])
 		}
-		for i := 0; i < len(path); i++ {
-			first += grid[path[i][0]][path[i][1]]
-			grid[path[i][0]][path[i][1]] = 0
+		/*
+			for i := 0; i < len(path); i++ {
+				first += grid[path[i][0]][path[i][1]]
+				grid[path[i][0]][path[i][1]] = 0
+			}
+		*/
+		for p := range path {
+			first += cherry[p[0]][p[1]]
+			cherry[p[0]][p[1]] = 0
 		}
-		second := pickMost(0, 0, grid)
+		second := pickMost(0, 0, grid, path)
 		if total < first+second {
 			total = first + second
 		}

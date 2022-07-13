@@ -126,7 +126,7 @@
       <workItem from="1657637282679" duration="29000" />
       <workItem from="1657637321331" duration="7164000" />
       <workItem from="1657644557648" duration="1182000" />
-      <workItem from="1657716848007" duration="2649000" />
+      <workItem from="1657716848007" duration="7799000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
@@ -191,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657643903646</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="use array">
+      <created>1657720561634</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1657720561634</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -201,7 +208,8 @@
     <MESSAGE value="OK" />
     <MESSAGE value="leetcode 741" />
     <MESSAGE value="almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost done" />
+    <MESSAGE value="use array" />
+    <option name="LAST_COMMIT_MESSAGE" value="use array" />
   </component>
   <component name="VgoProject">
     <environment>
