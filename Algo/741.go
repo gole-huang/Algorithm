@@ -38,21 +38,14 @@ func pickMost(x, y int, cherry [][]int) int {
 		res := cherry[x][y]
 		if x == length-1 && y == length-1 {
 			return res
-		} else if x == length-1 {
-			tmpRes := pickMost(x, y+1, cherry)
-			if tmpRes != -1 {
-				tmpRes += res
-			}
-			return tmpRes
-		} else if y == length-1 {
-			tmpRes := pickMost(x+1, y, cherry)
-			if tmpRes != -1 {
-				tmpRes += res
-			}
-			return tmpRes
 		} else {
-			xMove := pickMost(x+1, y, cherry)
-			yMove := pickMost(x, y+1, cherry)
+			var xMove, yMove int
+			if x != length-1 {
+				xMove = pickMost(x+1, y, cherry)
+			}
+			if y != length-1 {
+				yMove = pickMost(x, y+1, cherry)
+			}
 			if xMove == -1 && yMove == -1 {
 				return -1
 			} else if xMove > yMove {
@@ -66,7 +59,8 @@ func pickMost(x, y int, cherry [][]int) int {
 
 func CherryPickup(cherry [][]int) int {
 	total := 0
-	for _, path := range findPath(0, 0, cherry) {
+	paths := findPath(0, 0, cherry)
+	for _, path := range paths {
 		first := 0
 		grid := make([][]int, len(cherry))
 		for i := 0; i < len(cherry); i++ {

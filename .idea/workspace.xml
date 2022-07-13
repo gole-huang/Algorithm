@@ -36,6 +36,9 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="1okv9x4q" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2BIp5tKFtczPmLCJd3Xu1w9LR0t" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,6 +61,7 @@
     &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
@@ -120,7 +124,9 @@
       <workItem from="1657624753173" duration="2748000" />
       <workItem from="1657632870881" duration="4363000" />
       <workItem from="1657637282679" duration="29000" />
-      <workItem from="1657637321331" duration="6279000" />
+      <workItem from="1657637321331" duration="7164000" />
+      <workItem from="1657644557648" duration="1182000" />
+      <workItem from="1657716848007" duration="2649000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
@@ -178,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657635281245</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="almost done">
+      <created>1657643903646</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1657643903646</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
