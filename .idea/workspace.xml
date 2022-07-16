@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="use map">
+    <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algo/741.go" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/741.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +61,7 @@
     &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programing/Go/src/Algorithm/main/main.go&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
@@ -71,7 +71,16 @@
       <recent name="D:\Programing\Go\src\Algorithm" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go 构建.go build 741.go">
+    <configuration name="go build 741.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Algorithm" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="Algorithm" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main/main.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build Algorithm/main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
       <working_directory value="$PROJECT_DIR$" />
@@ -83,6 +92,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build 741.go" />
         <item itemvalue="Go 构建.go build Algorithm/main" />
       </list>
     </recent_temporary>
@@ -133,7 +143,23 @@
       <workItem from="1657859528919" duration="1598000" />
       <workItem from="1657862934977" duration="187000" />
       <workItem from="1657863133981" duration="5051000" />
-      <workItem from="1657877959675" duration="175000" />
+      <workItem from="1657877959675" duration="1007000" />
+      <workItem from="1657879801144" duration="73000" />
+      <workItem from="1657880199807" duration="120000" />
+      <workItem from="1657880348993" duration="95000" />
+      <workItem from="1657881062541" duration="198000" />
+      <workItem from="1657884684728" duration="824000" />
+      <workItem from="1657885524958" duration="446000" />
+      <workItem from="1657891175647" duration="5556000" />
+      <workItem from="1657899518252" duration="3729000" />
+      <workItem from="1657907038252" duration="624000" />
+      <workItem from="1657936721391" duration="3398000" />
+      <workItem from="1657945017643" duration="482000" />
+      <workItem from="1657949838552" duration="3829000" />
+      <workItem from="1657968960424" duration="2804000" />
+      <workItem from="1657990712844" duration="1052000" />
+      <workItem from="1657991984982" duration="213000" />
+      <workItem from="1657994818876" duration="131000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
@@ -212,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657727277945</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="cut some path but useless">
+      <created>1657878179228</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1657878179228</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -235,7 +268,8 @@
     <MESSAGE value="almost done" />
     <MESSAGE value="use array" />
     <MESSAGE value="use map" />
-    <option name="LAST_COMMIT_MESSAGE" value="use map" />
+    <MESSAGE value="cut some path but useless" />
+    <option name="LAST_COMMIT_MESSAGE" value="cut some path but useless" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
