@@ -56,9 +56,15 @@ func main() {
 			{'.', '.', '.', '.', '8', '.', '.', '7', '9'}}
 		Algo.SolveSudoku(board)
 	*/
-	//741
-	intervals, newInterval := [][]int{{3, 5}, {12, 15}}, []int{6, 6}
-	fmt.Printf("Answer: %v\n", Algo.Insert(intervals, newInterval))
+	//57
+	/* intervals, newInterval := [][]int{{3, 5}, {12, 15}}, []int{6, 6}
+	fmt.Printf("Answer: %v\n", Algo.Insert(intervals, newInterval)) */
+	//60
+	/* n, k := 3, 1
+	fmt.Printf("Result :%v\n", Algo.GetPermutation(n,k)) */
+	//65
+	s := "0e0"
+	fmt.Printf("Result :%v\n", Algo.IsNumber(s))
 }
 
 /*
@@ -116,4 +122,9 @@ Answer: 15
 [][]int{{0, 5}, {9, 12}}, []int{7, 16}
 [][]int{{1,5}},[]int{2,7}
 [][]int{{3,5},{12,15}}, []int{6,6}
+*/
+/*
+n, k := 3, 3
+n, k := 4, 9
+n, k := 3, 1
 */
