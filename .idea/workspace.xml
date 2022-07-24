@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772fc290-cd13-49a5-97cc-2e9bba885eb3" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algo/60.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algo/65.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/51.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,24 +50,24 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "configurable..is.expanded": "false",
-    "configurable.GoLibrariesConfigurable.is.expanded": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "D:/Programing/Go/src/Algorithm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
+    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programing/Go/src/Algorithm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programing\Go\src\Algorithm" />
@@ -183,6 +181,9 @@
       <workItem from="1658496406098" duration="10278000" />
       <workItem from="1658546662484" duration="44000" />
       <workItem from="1658566323331" duration="121000" />
+      <workItem from="1658631562371" duration="3330000" />
+      <workItem from="1658638394161" duration="35000" />
+      <workItem from="1658638440772" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="not finished yet">
       <created>1657389436535</created>
