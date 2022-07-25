@@ -6,11 +6,29 @@ import (
 )
 
 func main() {
-	//41
-	n := 20
-	fmt.Printf("Result: %v\n", Algo.SolveNQueens(n))
+	// 41
+	s, p := "b", "?*?"
+	fmt.Printf("%#v,%#v, Result: %v\n", s, p, Algo.IsMatch(s, p))
 }
 
+/* 44
+"b","?*?"
+"",""
+"ab","?*"
+"aa","aa"
+"ho","**ho"
+"abbabaaabbabbaababbabbbbbabbbabbbabaaaaababababbbabababaabbababaabbbbbbaaaabababbbaabbbbaabbbbababababbaabbaababaabbbababababbbbaaabbbbbabaaaabbababbbbaababaabbababbbbbababbbabaaaaaaaabbbbbaabaaababaaaabb","**aa*****ba*a*bb**aa*ab****a*aaaaaa***a*aaaa**bbabb*b*b**aaaaaaaaa*a********ba*bbb***a*ba*bb*bb**a*b*bb", Result: false
+"aaaabaaaabbbbaabbbaabbaababbabbaaaababaaabbbbbbaabbbabababbaaabaabaaaaaabbaabbbbaababbababaabbbaababbbba","*****b*aba***babaa*bbaba***a*aaba*b*aa**a*b**ba***a*a*", Result: true
+"mississippi","m??*ss*?i*pi", Result: false
+"abcabczzzde","*abc???de*", Result: true
+"","******", Result: true
+"aa","a", Result: false
+"aa","*", Result: true
+"cb","?a", Result: false
+"adceb","*a*b", Result: true
+"acdcb","a*c?b", Result: false
+"abcabczzzde","*abc???de*", Result: true
+*/
 /*
 1,2,0
 3,4,-1,1

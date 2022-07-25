@@ -1,40 +1,77 @@
 package Algo
 
-func IsMatch(s string, p string) bool {
-	if len(p) == 0 { // p匹配完成
-		return len(s) == 0 //返回s是否匹配完成
-	}
-	i := 0
-	for ; i < len(s); i++ {
-		if len(p) <= i { // p完成匹配，s未完成
-			return false
-		} else if p[i] == '?' {
-			continue
-		} else if p[i] == '*' {
-			otherStr := false
-			for j := i; j <= len(s); j++ {
-				k := 0
-				for ; k < len(p)-i; k++ {
-					if p[i+k] == '*' {
-						continue
-					} else {
-						break
-					}
-				}
-				if IsMatch(s[j:], p[i+k:]) {
-					otherStr = true
-					break
-				}
+func search(s, p string) int {
+	for i := 0; i < len(s); i++ {
+		fullMatch := true
+		for j := 0; j < len(p); j++ {
+			if i+j >= len(s) {
+				return -1
+			} else if p[j] == '?' || p[j] == s[i+j] {
+				continue
+			} else {
+				fullMatch = false
+				break
 			}
-			return otherStr
-		} else if s[i] != p[i] {
+		}
+		if fullMatch {
+			return i
+		}
+	}
+	return -1
+}
+
+func IsMatch(s, p string) bool {
+	if p == "" {
+		return s == ""
+	}
+	match := make([]string, 0)
+	start, end := 0, 0
+	hasStar := false
+	for i := 0; i < len(p); i++ {
+		if p[i] != '*' {
+			end++
+		} else {
+			hasStar = true
+			if i < len(p)-1 && p[i+1] == '*' {
+				continue
+			} else {
+				if start != end {
+					match = append(match, p[start:end])
+				}
+				start = i + 1
+				end = i + 1
+			}
+		}
+	}
+	if start != end {
+		match = append(match, p[start:end])
+	}
+	if p[0] != '*' {
+		if search(s, match[0]) != 0 {
+			return false
+		} else {
+			s = s[len(match[0]):]
+			match = match[1:]
+		}
+	}
+	if len(match) > 0 {
+		lastWordLength := len(match[len(match)-1]) // 最后一个单词长度
+		if p[len(p)-1] != '*' {
+			if len(s) < lastWordLength || search(s[len(s)-lastWordLength:], match[len(match)-1]) != 0 {
+				return false
+			} else {
+				s = s[:len(s)-lastWordLength]
+				match = match[:len(match)-1]
+			}
+		}
+	}
+	for i := 0; i < len(match); i++ {
+		tmpRes := search(s, match[i])
+		if tmpRes != -1 {
+			s = s[tmpRes+len(match[i]):]
+		} else {
 			return false
 		}
 	}
-	for j := i; j < len(p); j++ { // s完成匹配，p把多余的*去掉
-		if p[j] != '*' {
-			return false
-		}
-	}
-	return true
+	return s == "" || hasStar
 }
