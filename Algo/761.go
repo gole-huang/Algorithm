@@ -2,7 +2,9 @@ package Algo
 
 /*
 MakeLargestSpecial
-一个序列必定是a个1，b个0，c个1开始，d个0结尾。其中a>=b，a<=d。若a=b，则直接返回
+首先寻找特殊序列中除了头部以外，最长的连续‘1’，并找到该连续‘1’开头的子序列，以s[start:tail]标记
+从start-1往前追溯，每遇到完整一个子序列就交换位置，直到最靠前。
+然后针对
 */
 func MakeLargestSpecial(s string) string {
 	maxQueue, start := 0, 0
@@ -13,7 +15,6 @@ func MakeLargestSpecial(s string) string {
 			break
 		}
 	}
-	head := start
 	for start < len(s) {
 		if s[start] == '0' {
 			start++
@@ -21,11 +22,13 @@ func MakeLargestSpecial(s string) string {
 			break
 		}
 	}
+	maxStart := 0
 	for i := start; i < len(s); i++ {
 		if s[i] == '0' {
 			if s[i-1] == '1' {
 				if maxQueue < i-start {
 					maxQueue = i - start
+					maxStart = start
 				}
 			}
 		} else {
@@ -34,9 +37,13 @@ func MakeLargestSpecial(s string) string {
 			}
 		}
 	}
+	if maxQueue == 1 {
+		return s
+	}
+	start = maxStart
 	var tail int
-	diff := 0
-	for i := start; i < len(s); i++ {
+	diff, i := 0, start
+	for ; i < len(s); i++ {
 		if s[i] == '1' {
 			diff++
 		} else {
@@ -47,22 +54,31 @@ func MakeLargestSpecial(s string) string {
 			}
 		}
 	}
-
-	for i := start - 1; i >= 0; i-- {
+	if i == len(s) {
+		return s
+	}
+	i = start - 1
+	for ; i >= 0; i-- {
 		if s[i] == '0' {
 			diff++
 		} else {
 			diff--
 			if diff == 0 {
-				//交换数组
 				tmpHead := s[:i]
 				tmpStr := s[i:start]
 				str := s[start:tail]
 				tmpTail := s[tail:]
-				s = tmpHead + str + tmpStr + tmpTail
-				start = i
-				tail -= start - i
+				if tmpStr < str {
+					s = tmpHead + str + tmpStr + tmpTail
+					tail -= start - i
+					start = i
+				} else if tail == len(s)-1 {
+					return s
+				} else {
+					return s[:start] + MakeLargestSpecial(s[start:])
+				}
 			}
 		}
 	}
+	return MakeLargestSpecial(s)
 }
