@@ -1,84 +1,64 @@
 package Algo
 
-/*
-MakeLargestSpecial
-首先寻找特殊序列中除了头部以外，最长的连续‘1’，并找到该连续‘1’开头的子序列，以s[start:tail]标记
-从start-1往前追溯，每遇到完整一个子序列就交换位置，直到最靠前。
-然后针对
-*/
-func MakeLargestSpecial(s string) string {
-	maxQueue, start := 0, 0
-	for start < len(s) {
-		if s[start] == '1' {
-			start++
-		} else {
-			break
-		}
+func resortStr(ch []byte, start int) int {
+	if len(ch) < 6 { // 不用排，没法动
+		return start
 	}
-	for start < len(s) {
-		if s[start] == '0' {
-			start++
-		} else {
-			break
-		}
-	}
-	maxStart := 0
-	for i := start; i < len(s); i++ {
-		if s[i] == '0' {
-			if s[i-1] == '1' {
-				if maxQueue < i-start {
-					maxQueue = i - start
-					maxStart = start
-				}
-			}
-		} else {
-			if s[i-1] == '0' {
-				start = i
-			}
-		}
-	}
-	if maxQueue == 1 {
-		return s
-	}
-	start = maxStart
 	var tail int
 	diff, i := 0, start
-	for ; i < len(s); i++ {
-		if s[i] == '1' {
+	for ; i < len(ch); i++ {
+		if ch[i] == '1' {
 			diff++
 		} else {
 			diff--
-			if diff == 0 {
+			if diff < 0 {
+				return start
+			} else if diff == 0 {
 				tail = i + 1
 				break
 			}
 		}
 	}
-	if i == len(s) {
-		return s
+	if i == len(ch) { // 往后非子字符串，没法动
+		return start
 	}
 	i = start - 1
 	for ; i >= 0; i-- {
-		if s[i] == '0' {
+		if ch[i] == '0' {
 			diff++
 		} else {
 			diff--
-			if diff == 0 {
-				tmpHead := s[:i]
-				tmpStr := s[i:start]
-				str := s[start:tail]
-				tmpTail := s[tail:]
-				if tmpStr < str {
-					s = tmpHead + str + tmpStr + tmpTail
+			if diff < 0 {
+				break
+			} else if diff == 0 {
+				// tmpHead, tmpStr, str, tmpTail := ch[:i], ch[i:start], ch[start:tail], ch[tail:]
+				tmpStr, str := ch[i:start], ch[start:tail]
+				if string(tmpStr) < string(str) {
+					// ch = []byte(string(tmpHead) + string(str) + string(tmpStr) + string(tmpTail)) //无法使形参修改反馈到实参
+					xchg := make([]byte, len(str))
+					copy(xchg, str)
+					xchg = append(xchg, tmpStr...)
+					copy(ch[i:tail], xchg)
 					tail -= start - i
 					start = i
-				} else if tail == len(s)-1 {
-					return s
+					for start >= 0 && ch[start] == '1' {
+						start--
+					}
 				} else {
-					return s[:start] + MakeLargestSpecial(s[start:])
+					break
 				}
 			}
 		}
 	}
-	return MakeLargestSpecial(s)
+	return start
+}
+
+func MakeLargestSpecial(s string) string {
+	str := []byte(s)
+	for i := 0; i < len(str); i++ {
+		if str[i] == '1' {
+			i = resortStr(str, i)
+		}
+	}
+	return string(str)
 }
