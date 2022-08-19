@@ -1,11 +1,12 @@
 package Algo
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
+/*
+	type TreeNode struct {
+		Val   int
+		Left  *TreeNode
+		Right *TreeNode
+	}
+*/
 func DeepestLeavesSum(root *TreeNode) int {
 	nodes := []*TreeNode{root}
 	for len(nodes) != 0 {
