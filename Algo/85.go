@@ -1,74 +1,81 @@
 package Algo
 
-func addLine(sqrs [][3]int, line []byte, max *int) [][3]int {
-	newSqrs := make([][3]int, 0) // 存放当前行新增的矩阵（高度为1）
-	newSqr := [3]int{1, -1, -1}  // 存放每一个单元格可能新增的矩阵（高度为1）
+func addLine(squares map[[2]int]int, line []byte, max *int) map[[2]int]int {
+	newLines := make([][2]int, 0) // 存放当前行新增的矩阵（高度为1）
+	newLine := [2]int{-1, -1}     // 存放每一个单元格可能新增的矩阵（高度为1）
 	for keyLine, vLine := range line {
-		tmpSqr := make([][3]int, 0) // 存放之前仍未终结的矩阵
 		if vLine == '0' {
-			for kCur := 0; kCur < len(sqrs); kCur++ { // 若节点为0，则终结越过该节点的矩阵
-				if sqrs[kCur][1] <= keyLine && keyLine < sqrs[kCur][2] {
-					if *max < sqrs[kCur][0]*(sqrs[kCur][2]-sqrs[kCur][1]) {
-						*max = sqrs[kCur][0] * (sqrs[kCur][2] - sqrs[kCur][1]) // 求当前矩阵最大值
+			for key, value := range squares { // 若节点为0，则终结越过该节点的矩阵
+				if key[0] <= keyLine && keyLine < key[1] {
+					if *max < value*(key[1]-key[0]) {
+						*max = value * (key[1] - key[0]) // 求当前矩阵最大值
 					}
-					if keyLine < sqrs[kCur][2]-1 {
-						tmpSqr = append(tmpSqr, [3]int{sqrs[kCur][0], keyLine + 1, sqrs[kCur][2]})
-					}
-					if sqrs[kCur][1] == keyLine {
-						sqrs = append(sqrs[:kCur], sqrs[kCur+1:]...)
-						kCur--
-					} else {
-						sqrs[kCur][2] = keyLine
-						if sqrs[kCur][1] == newSqr[1] { // 新线段起始与结束与新线段同样，删除新线段.
-							newSqr = [3]int{1, -1, -1}
+					if keyLine < key[1]-1 {
+						if v, ok := squares[[2]int{keyLine + 1, key[1]}]; !ok || v < value {
+							squares[[2]int{keyLine + 1, key[1]}] = value
 						}
+						delete(squares, key)
+					}
+					if key[0] == keyLine {
+						delete(squares, key)
+					} else {
+						if v, ok := squares[[2]int{key[0], keyLine}]; !ok || v < value {
+							squares[[2]int{key[0], keyLine}] = value
+						}
+						if key[0] == newLine[0] { // 新线段起始与结束与新线段同样，删除新线段.
+							newLine = [2]int{-1, -1}
+						}
+						delete(squares, key)
 					}
 				}
 			}
-			if newSqr[1] != -1 && newSqr[2] == -1 { //	更新当前行新增矩阵（实际是一条线段）的结束位置
-				newSqr[2] = keyLine
-				newSqrs = append(newSqrs, newSqr)
-				newSqr = [3]int{1, -1, -1}
+			if newLine[0] != -1 && newLine[1] == -1 { //	更新当前行新增矩阵（实际是一条线段）的结束位置
+				newLine[1] = keyLine
+				newLines = append(newLines, newLine)
+				newLine = [2]int{-1, -1}
 			}
-			sqrs = append(sqrs, tmpSqr...)
-		} else if newSqr[1] == -1 {
-			newSqr[1] = keyLine
+		} else if newLine[0] == -1 {
+			newLine[0] = keyLine
 		}
 	}
 
-	for k := range sqrs {
-		sqrs[k][0]++ // 所有现存的矩形高度+1
+	for k := range squares {
+		squares[k]++ // 所有现存的矩形高度+1
 	}
-	if newSqr[1] != -1 && newSqr[2] == -1 { //	更新当前行新增矩形（实际是一条线段）的结束位置
-		newSqr[2] = len(line)
-		newSqrs = append(newSqrs, newSqr)
+	if newLine[0] != -1 && newLine[1] == -1 { //	更新当前行新增矩形（实际是一条线段）的结束位置
+		newLine[1] = len(line)
+		newLines = append(newLines, newLine)
 	}
-	sqrs = append(sqrs, newSqrs...)
-	return sqrs
+	for _, v := range newLines {
+		if _, ok := squares[[2]int{v[0], v[1]}]; !ok {
+			squares[[2]int{v[0], v[1]}] = 1
+		}
+	}
+	return squares
 }
 
 func MaximalRectangle(matrix [][]byte) int {
 	maxSquare := new(int)
-	curSquare := make([][3]int, 0)
+	curSquare := make(map[[2]int]int)
 	left := -1
 	for k, v := range matrix[0] {
 		if v != '0' && left == -1 {
 			left = k
 		}
 		if v == '0' && left != -1 {
-			curSquare = append(curSquare, [3]int{1, left, k}) // 左开放，右关闭
+			curSquare[[2]int{left, k}] = 1 // 左开放，右关闭
 			left = -1
 		}
 	}
 	if left != -1 {
-		curSquare = append(curSquare, [3]int{1, left, len(matrix[0])}) // 左开放，右关闭
+		curSquare[[2]int{left, len(matrix[0])}] = 1 // 左开放，右关闭
 	}
-	for _, v := range matrix[1:] {
-		curSquare = addLine(curSquare, v, maxSquare)
+	for _, line := range matrix[1:] {
+		curSquare = addLine(curSquare, line, maxSquare)
 	}
-	for _, v := range curSquare {
-		if *maxSquare < v[0]*(v[2]-v[1]) {
-			*maxSquare = v[0] * (v[2] - v[1])
+	for k, v := range curSquare {
+		if *maxSquare < v*(k[1]-k[0]) {
+			*maxSquare = v * (k[1] - k[0])
 		}
 	}
 	return *maxSquare
