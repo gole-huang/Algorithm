@@ -24,13 +24,14 @@ func getHeight(t *TreeNode) int {
 		return max(1+getHeight(t.Left), 1+getHeight(t.Right))
 	}
 }
-
 func bfs(t *TreeNode) [][3]int {
 	height := getHeight(t)
-	res := [][3]int{{0, (height - 1) / 2, t.Val}}
+	width := int(math.Pow(2, float64(height))) - 1
+	res := [][3]int{{0, (width - 1) / 2, t.Val}}
 	layer, cur := 0, 0
 	nodes := []*TreeNode{t}
-	for nodes != nil {
+	for len(nodes) != 0 {
+		layer++
 		tmpNodes := make([]*TreeNode, 0)
 		for _, v := range nodes {
 			if v.Left != nil {
@@ -44,12 +45,11 @@ func bfs(t *TreeNode) [][3]int {
 			cur++
 		}
 		nodes = tmpNodes
-		layer++
 	}
 	return res
 }
 
-//PrintTree
+// PrintTree
 /*
 树的高度为height，行数m = height+1。
 矩阵的列数n = 2^(height+1)-1。
@@ -58,7 +58,7 @@ func bfs(t *TreeNode) [][3]int {
 任意空单元格都应该包含空字符串 "" 。
 */
 func PrintTree(root *TreeNode) [][]string {
-	height := getHeight(root) //height=树的高度+1
+	height := getHeight(root) // height=树的高度+1
 	res := make([][]string, height)
 	width := int(math.Pow(2, float64(height))) - 1
 	for k := range res {
