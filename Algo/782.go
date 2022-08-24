@@ -1,63 +1,149 @@
 package Algo
 
-func isChesboard(brd [][]int, rowMax, rowMin, colMax, colMin *int) bool {
-	one := 0
-	for _, b := range brd {
-		for _, v := range b {
-			if v == 0 {
-				one--
-				if one < *rowMin {
-					*rowMin = one
-				}
-			} else {
-				one++
-				if one > *rowMax {
-					*rowMax = one
-				}
-			}
-		}
-		if one < -1 || one > 1 {
-			return false
-		}
-		one = 0
+/*
+第一行作为比较，之后所有行，要么与第一行一样，要么与第一行相反。列也一样。
+第一行中，0的个数和1的个数相差不超过1.同样，第一列中0的个数和1的个数不超过1
+若第一行为偶数，则只需要计算出出现连续1的长度和次数。长度/2代表移动1列，把所有长度加起来即为待调整的次数。列也要单独算
+若第一行为奇数，则需要判断0和1较多者是否在两个角落，否则每个角落需要额外+1
+*/
+func compare(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
 	}
-	for j := 0; j < len(brd[0]); j++ {
-		for i := 0; i < len(brd); i++ {
-			if brd[i][j] == 0 {
-				one--
-				if one < *colMin {
-					*colMin = one
-				}
-			} else {
-				one++
-				if one > *colMax {
-					*colMax = one
-				}
-			}
-		}
-		if one < -1 || one > 1 {
+	reverse := a[0] != b[0]
+	for k := range a {
+		if reverse && a[k] == b[k] || !reverse && a[k] != b[k] {
 			return false
 		}
-		one = 0
 	}
 	return true
 }
 
-func MovesToChessboard(board [][]int) int {
-	rowMin, rowMax, colMin, colMax := new(int), new(int), new(int), new(int)
-	if !isChesboard(board, rowMin, rowMax, colMin, colMax) {
+func isChessboard(brd [][]int) (bool, int) {
+	zero, one := 0, 0   // 首行、首列的0、1个数
+	con0, con1 := 1, 1  // 每一个连续0，1的长度
+	zeros, ones := 0, 0 // 首行、首列连续0、1中需要移动的次数
+	var cnt int         //交换总数
+	//首行
+	for i := 0; i < len(brd); i++ {
+		if brd[0][i] == 0 {
+			zero++
+			if i > 0 {
+				if brd[0][i-1] == 0 {
+					con0++
+				} else if con1 > 1 {
+					ones += con1 >> 1
+					con1 = 1
+				}
+			}
+		} else {
+			one++
+			if i > 0 {
+				if brd[0][i-1] == 1 {
+					con1++
+				} else {
+					zeros += con0 >> 1
+					con0 = 1
+				}
+			}
+		}
+
+	}
+	if len(brd)%2 == 0 {
+		if zero != one {
+			return false, -1
+		}
+		zeros += con0 >> 1
+		ones += con1 >> 1
+		cnt = max(zeros, ones)
+	} else if zero > one {
+		if zero-one != 1 {
+			return false, -1
+		}
+		if brd[0][0] != 0 {
+			zeros++
+		}
+		if brd[len(brd)-1][0] != 0 {
+			zeros++
+		}
+		cnt = zeros
+	} else {
+		if one-zero != 1 {
+			return false, -1
+		}
+		if brd[0][0] != 1 {
+			ones++
+		}
+		if brd[len(brd)-1][0] != 0 {
+			ones++
+		}
+		cnt = ones
+	}
+	zeros, one = 0, 0
+	for i := 0; i < len(brd); i++ {
+		if brd[i][0] == 0 {
+			zero++
+			if i > 0 {
+				if brd[0][i-1] == 0 {
+					con0++
+				} else if con1 > 1 {
+					ones += con1 >> 1
+					con1 = 1
+				}
+			}
+		} else {
+			one++
+			if i > 0 {
+				if brd[0][i-1] == 1 {
+					con1++
+				} else {
+					zeros += con0 >> 1
+					con0 = 1
+				}
+			}
+		}
+	}
+	if len(brd)%2 == 0 {
+		if zero != one {
+			return false, -1
+		}
+		zeros += con0 >> 1
+		ones += con1 >> 1
+		cnt += max(zeros, ones)
+	} else if zero > one {
+		if zero-one != 1 {
+			return false, -1
+		}
+		if brd[0][0] != 0 {
+			zeros++
+		}
+		if brd[len(brd)-1][0] != 0 {
+			zeros++
+		}
+		cnt += zeros
+	} else {
+		if one-zero != 1 {
+			return false, -1
+		}
+		if brd[0][0] != 1 {
+			ones++
+		}
+		if brd[len(brd)-1][0] != 0 {
+			ones++
+		}
+		cnt += ones
+	}
+	return true, max(zeros, ones)
+}
+
+func movesToChessboard(board [][]int) int {
+	firstCheck, res := isChessboard(board)
+	if !firstCheck {
 		return -1
 	}
-	var row, col int
-	if *rowMin+*rowMax < 0 {
-		row = -*rowMin
-	} else {
-		row = *rowMax
+	for i := 1; i < len(board); i++ {
+		if !compare(board[0], board[i]) {
+			return -1
+		}
 	}
-	if *colMin+*colMax < 0 {
-		col = -*colMin
-	} else {
-		col = *colMax
-	}
-	return row/2 + col/2
 }
