@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func GroupThePeople(groupSizes []int) [][]int {
 	groupMap := make(map[int][]int)

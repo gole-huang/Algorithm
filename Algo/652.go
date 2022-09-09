@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func compareRoot(first, second *TreeNode) bool {
 	if first == nil && second == nil {

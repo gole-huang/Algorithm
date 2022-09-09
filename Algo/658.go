@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func abs(a, b int) int {
 	if a > b {

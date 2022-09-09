@@ -1,9 +1,4 @@
-package Algo
-
-import (
-	"fmt"
-	"time"
-)
+package algo
 
 func copyMap(srcMap map[string]int) map[string]int {
 	dst := make(map[string]int)
@@ -25,7 +20,6 @@ func FindSubstring(s string, words []string) []int {
 		str := s[begin:]
 		needBack := 0
 		wMap := copyMap(wordMap)
-		t0 := time.Now()
 		for p := 0; p < len(str); p += lgh {
 			if p+lgh > len(str) {
 				break
@@ -52,8 +46,6 @@ func FindSubstring(s string, words []string) []int {
 				wMap = copyMap(wordMap)
 			}
 		}
-		escaped := time.Since(t0)
-		fmt.Println("Used ", escaped)
 	}
 	return res
 }

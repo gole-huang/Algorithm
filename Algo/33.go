@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func divSearch(nums []int, target int) int {
 	head, tail := 0, len(nums)-1

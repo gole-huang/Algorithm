@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 type MyCircularQueue struct {
 	queue []int
@@ -7,7 +7,7 @@ type MyCircularQueue struct {
 	empty bool
 }
 
-func Constructor(k int) MyCircularQueue {
+func ConstructorMCQ(k int) MyCircularQueue {
 	obj := new(MyCircularQueue)
 	obj.queue = make([]int, k)
 	obj.front, obj.rear = 0, 0

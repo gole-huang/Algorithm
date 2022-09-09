@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func GenerateMatrix(n int) [][]int {
 	res := make([][]int, n)

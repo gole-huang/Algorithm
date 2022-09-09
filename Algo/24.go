@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 type ListNode struct {
 	Val  int

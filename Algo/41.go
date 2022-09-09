@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func FirstMissingPositive(nums []int) int {
 	//nums = append([]int{0}, nums...)

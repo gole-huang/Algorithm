@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func checkLess(less map[int]int) bool {
 	onlyOne := true

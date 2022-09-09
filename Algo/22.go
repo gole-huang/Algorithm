@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func addParentheses(n int) []string {
 	if n == 1 {

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func InsertIntoMaxTree(root *TreeNode, val int) *TreeNode {
 	if val > root.Val {

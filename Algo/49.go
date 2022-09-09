@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func strCmp(srcOri, dstOri map[byte]int) bool {
 	src := make(map[byte]int, len(srcOri))

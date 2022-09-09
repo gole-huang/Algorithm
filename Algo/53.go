@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func MaxSubArray(nums []int) int {
 	if len(nums) == 1 {

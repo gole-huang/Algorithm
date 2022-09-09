@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func pathSum(x, y int, grid [][]int) int {
 	if x == len(grid)-1 && y == len(grid[x])-1 {

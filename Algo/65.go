@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func IsNumber(s string) bool {
 	hasDot, hasE, hasNum := false, false, false
@@ -15,7 +15,7 @@ func IsNumber(s string) bool {
 			} else {
 				return false
 			}
-		} else if s[i] == 'e' || s[i] == 'E' {	//E前面必须是一个非零数，后面必须是数
+		} else if s[i] == 'e' || s[i] == 'E' { //E前面必须是一个非零数，后面必须是数
 			if !hasE && hasNum {
 				hasE = true
 				hasNum = false

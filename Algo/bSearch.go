@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func BinSearch(nums []int, target int) int {
 	head, tail := 0, len(nums)

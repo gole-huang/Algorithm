@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 /*
 该结构主要用于标识某个格四周的感染情况以及防毒墙放置情况

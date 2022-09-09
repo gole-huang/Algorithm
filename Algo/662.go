@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func widthOfBinaryTree(root *TreeNode) int {
 	lev, maxWidth := 0, 0

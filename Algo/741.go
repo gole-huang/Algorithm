@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ type Cherry struct {
 	Grid [][][2]bool
 }
 
-//把果园从int64转换为2*bool，压缩内存
+// 把果园从int64转换为2*bool，压缩内存
 func (grid *Cherry) transform(cherry [][]int) {
 	grid.Grid = make([][][2]bool, len(cherry))
 	for i := 0; i < len(cherry); i++ {

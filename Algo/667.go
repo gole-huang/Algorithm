@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func ConstructArray(n int, k int) []int {
 	arr := make([]int, n)

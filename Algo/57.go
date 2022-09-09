@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func Insert(intervals [][]int, newInterval []int) [][]int {
 	if len(intervals) == 0 || newInterval[0] <= intervals[0][0] && newInterval[1] >= intervals[len(intervals)-1][1] {

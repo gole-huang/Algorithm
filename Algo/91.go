@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func fabonacci(n int) int {
 	a, b, c := 1, 1, 2

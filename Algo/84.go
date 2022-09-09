@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func LargestRectangleArea(heights []int) int {
 	maxSqr := 0

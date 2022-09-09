@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func ClimbStairs(n int) int {
 	pre, cur := 1, 1

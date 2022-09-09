@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 // PreimageSizeFZF /*
 // k实际代表了前x个数里一共有多少个5。

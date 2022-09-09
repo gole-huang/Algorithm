@@ -1,11 +1,11 @@
-package Algo
+package algo
 
 type OrderedStream struct {
 	steam []string
 	cur   int
 }
 
-func Constructor(n int) OrderedStream {
+func ConstructorOS(n int) OrderedStream {
 	os := new(OrderedStream)
 	os.steam = make([]string, n)
 	return *os

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func setQueen(grid [][]bool, x, y int, oCols []int) (res [][][2]int) {
 	n := len(grid)

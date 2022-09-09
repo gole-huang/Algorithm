@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func ValidateStackSequences(pushed []int, popped []int) bool {
 	if len(pushed) != len(popped) {

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func UniqueLetterString(s string) (res int) {
 	charSet := [26][3]int{{}}

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func factorial(n int) int {
 	if n <= 1 {

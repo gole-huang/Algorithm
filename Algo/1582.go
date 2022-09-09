@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func numSpecial(mat [][]int) int {
 	res := 0

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func resortStr(ch []byte, start int) int {
 	if len(ch) < 6 { // 不用排，没法动

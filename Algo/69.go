@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func MySqrt(x int) int {
 	res := x

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 const start int = 0
 const fromUp int = 1

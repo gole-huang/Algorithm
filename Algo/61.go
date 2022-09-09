@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func RotateRight(head *ListNode, k int) *ListNode {
 	if head == nil {

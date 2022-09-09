@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func search(s, p string) int {
 	for i := 0; i < len(s); i++ {

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func validPath(x, y int, obstacleGrid [][]int) int {
 	if x == len(obstacleGrid)-1 && y == len(obstacleGrid[x])-1 {

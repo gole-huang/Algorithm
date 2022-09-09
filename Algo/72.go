@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func findChar(s string, c byte) int {
 	for i := 0; i < len(s); i++ {

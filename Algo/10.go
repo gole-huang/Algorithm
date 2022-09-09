@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 import "fmt"
 
@@ -10,7 +10,7 @@ func anyChar(s, p string) bool {
 		return true
 	} else {
 		for i := 0; i < len(s); i++ {
-			fmt.Printf("Match start from : %q\n", s[i])
+			fmt.Printf("Match start timeStamp : %q\n", s[i])
 			if IsMatch(s[i:], p) {
 				return true
 			}

@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func triComp(a, b, c int) int {
 	if a > b {

@@ -1,3 +1,3 @@
 module Algorithm
-
-go 1.18
+replace github.com/go-delve/delve => github.com/derekparker/delve v1.4.0
+go 1.19

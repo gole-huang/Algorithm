@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func addNode(value int, left, right []int) (root *TreeNode) {
 	root = new(TreeNode)

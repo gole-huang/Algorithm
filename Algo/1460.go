@@ -1,4 +1,4 @@
-package Algo
+package algo
 
 func CanBeEqual(target []int, arr []int) bool {
 	for len(target) > 0 {
