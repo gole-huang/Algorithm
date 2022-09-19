@@ -2,6 +2,12 @@ package algo
 
 import "sort"
 
+type node struct {
+	id  int
+	x   int
+	add bool
+}
+
 func addSegment(lines [][2]int, head, tail int) [][2]int {
 	switch {
 	case len(lines) == 0:
@@ -46,9 +52,20 @@ func addSegment(lines [][2]int, head, tail int) [][2]int {
 	}
 }
 
+func totalLength(lines [][2]int) (res int) {
+	mergeSegment := make([][2]int, 0)
+	for _, v := range lines {
+		mergeSegment = addSegment(mergeSegment, v[0], v[1])
+	}
+	for _, v := range mergeSegment {
+		res += v[1] - v[0]
+	}
+	return
+}
+
 func RectangleArea(rectangles [][]int) int {
 	if len(rectangles) == 1 {
-		return int(int64((rectangles[0][2]-rectangles[0][0])*(rectangles[0][3]-rectangles[0][1])) % 1000000007)
+		return (rectangles[0][2] - rectangles[0][0]) * (rectangles[0][3] - rectangles[0][1]) % 1000000007
 	}
 	sort.Slice(rectangles, func(i, j int) bool {
 		switch {
@@ -62,25 +79,34 @@ func RectangleArea(rectangles [][]int) int {
 			return rectangles[i][3] < rectangles[j][3]
 		}
 	})
-	res := int64(0)
-	xMap := make(map[int]bool, 0)
-	for rKey, rVal := range rectangles {
-		for x := rVal[0]; x <= rVal[2]; x++ {
-			if _, ok := xMap[x]; !ok {
-				xMap[x] = true
-				lines := make([][2]int, 0)
-				for _, rrVal := range rectangles[rKey:] {
-					if x < rrVal[0] {
-						break
-					} else if x < rrVal[2] {
-						lines = addSegment(lines, rrVal[1], rrVal[3])
-					}
-				}
-				for _, v := range lines {
-					res += int64(v[1] - v[0])
+	xAxis := make([]node, len(rectangles)*2)
+	for k, v := range rectangles {
+		xAxis[k*2].id = k
+		xAxis[k*2].x = v[0]
+		xAxis[k*2].add = true
+		xAxis[k*2+1].id = k
+		xAxis[k*2+1].x = v[2]
+		xAxis[k*2+1].add = false
+	}
+	sort.Slice(xAxis, func(i, j int) bool {
+		return xAxis[i].x < xAxis[j].x
+	})
+	res := 0
+	squares := make([][2]int, 0)
+	for k := range xAxis {
+		if xAxis[k].add {
+			squares = append(squares, [2]int{rectangles[xAxis[k].id][1], rectangles[xAxis[k].id][3]})
+		} else {
+			for cur := range squares {
+				if squares[cur] == [2]int{rectangles[xAxis[k].id][1], rectangles[xAxis[k].id][3]} {
+					squares = append(squares[:cur], squares[cur+1:]...)
+					break
 				}
 			}
 		}
+		if k < len(xAxis)-1 && xAxis[k+1].x != xAxis[k].x {
+			res += (xAxis[k+1].x - xAxis[k].x) * totalLength(squares)
+		}
 	}
-	return int(res % 1000000007)
+	return res % 1000000007
 }
