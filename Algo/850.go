@@ -31,9 +31,9 @@ func addSegment(lines [][2]int, head, tail int) [][2]int {
 		for k := headSegment; k < len(lines); k++ {
 			if tail < lines[k][0] {
 				tailEnd = false
-				tailSegment = k - 1
-				if tail < lines[tailSegment][1] {
-					tail = lines[tailSegment][1]
+				tailSegment = k
+				if tail < lines[tailSegment-1][1] {
+					tail = lines[tailSegment-1][1]
 				}
 				break
 			}
@@ -44,8 +44,8 @@ func addSegment(lines [][2]int, head, tail int) [][2]int {
 			}
 			return append(lines[:headSegment], [2]int{head, tail})
 		}
-		tmpLines := make([][2]int, len(lines[tailSegment+1:]))
-		copy(tmpLines, lines[tailSegment+1:])
+		tmpLines := make([][2]int, len(lines[tailSegment:]))
+		copy(tmpLines, lines[tailSegment:])
 		lines = append(lines[:headSegment], [2]int{head, tail})
 		lines = append(lines, tmpLines...)
 		return lines
@@ -89,7 +89,11 @@ func RectangleArea(rectangles [][]int) int {
 		xAxis[k*2+1].add = false
 	}
 	sort.Slice(xAxis, func(i, j int) bool {
-		return xAxis[i].x < xAxis[j].x
+		if xAxis[i].x != xAxis[j].x {
+			return xAxis[i].x < xAxis[j].x
+		} else {
+			return xAxis[i].add
+		}
 	})
 	res := 0
 	squares := make([][2]int, 0)
