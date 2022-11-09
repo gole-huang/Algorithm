@@ -1,52 +1,26 @@
 package algo
 
-import "fmt"
-
-func minSwap(nums1 []int, nums2 []int) int {
-	length := len(nums1)
-	cnt, back, front := 0, 0, 0
-	start := false
-	needEx := false
-	for i := 1; i < length; i++ {
-		switch {
-		case nums1[i-1] >= nums1[i] || nums2[i-1] >= nums2[i]:
-			if !start {
-				start = true
-				back++
+func MinSwap(nums1 []int, nums2 []int) int {
+	cnt:=0
+	for i:=1;i<len(nums1);i++ {
+		if nums1[i-1] >= nums1[i] || nums2[i-1] >= nums2[i] {
+			exc, noexc := 1, 1
+			for ;exc<len(nums1)-2-i; exc++ {
+				if nums1[i+exc]<nums1[i+exc+1] && nums2[i+exc]<nums2[i+exc+1]{
+					break
+				}
 			}
-			needEx = !needEx
-			if needEx {
-				front++
+			for ;noexc<i; noexc++ {
+				if nums1[i-noexc-1]<nums2[i-noexc] && nums2[i-noexc-1]<nums1[i-noexc]{
+					break
+				}
+			}
+			if noexc<exc {
+				cnt+=noexc
 			} else {
-				back++
+				cnt+=exc
+				i+=exc
 			}
-		case nums1[i-1] >= nums2[i] || nums2[i-1] >= nums1[i]:
-			if needEx {
-				front++
-			} else {
-				back++
-			}
-		default:
-			if !start || front == 0 {
-				back = 0
-				continue
-			}
-			fmt.Println(front, back)
-			if back < front {
-				cnt += back
-			} else {
-				cnt += front
-			}
-			back, front = 0, 0
-			start = false
-			needEx = false
-		}
-	}
-	if start {
-		if back < front {
-			cnt += back
-		} else {
-			cnt += front
 		}
 	}
 	return cnt
