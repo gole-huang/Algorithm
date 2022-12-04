@@ -56,23 +56,17 @@ func ClosestCost(baseCosts []int, toppingCosts []int, target int) int {
 			topSum = append(topSum, add1...)
 			topSum = append(topSum, add2...)
 		}
-		sort.Ints(topSum)
 		for k := range topSum {
-			if topTar < topSum[k] {
-				if topSum[k]-topTar < topTar-topSum[k-1] {
-					if topSum[k]-topTar < diff {
-						diff = topSum[k] - topTar
-						less = false
-					}
-				} else {
-					if topTar-topSum[k-1] <= diff {
-						diff = topTar - topSum[k-1]
-						less = true
-					}
-				}
-				break
-			} else if topTar == topSum[k] {
+			if topTar == topSum[k] {
 				return target
+			} else {
+				if topSum[k] > topTar && topSum[k]-topTar < diff {
+					diff = topSum[k] - topTar
+					less = false
+				} else if topSum[k] < topTar && topTar-topSum[k] <= diff {
+					diff = topTar - topSum[k]
+					less = true
+				}
 			}
 		}
 		if topSum[len(topSum)-1] < topTar && topTar-topSum[len(topSum)-1] <= diff {
@@ -82,7 +76,6 @@ func ClosestCost(baseCosts []int, toppingCosts []int, target int) int {
 	}
 	if less {
 		return target - diff
-	} else {
-		return target + diff
 	}
+	return target + diff
 }
